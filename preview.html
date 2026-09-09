@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>B Kasinath (Kasinath Thirupuram) — Data Analyst Portfolio</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            canvas: "#0B0F14",
+            panel: "#12171F",
+            panel2: "#18202A",
+            panel3: "#202A36",
+            line: "#232D3B",
+            lineHover: "#3A4A5E",
+            ink: "#F0F4F8",
+            mute: "#94A1B2",
+            amber: "#F5C827",
+            blue: "#3B82F6",
+            teal: "#14B8A6",
+            emerald: "#10B981",
+          },
+          fontFamily: {
+            sans: ["Manrope", "system-ui", "sans-serif"],
+            mono: ["IBM Plex Mono", "ui-monospace", "monospace"],
+          },
+          animation: {
+            float: "float 6s ease-in-out infinite",
+            "float-slow": "float 9s ease-in-out infinite",
+            shimmer: "shimmer 6s linear infinite",
+          },
+          keyframes: {
+            float: {
+              "0%, 100%": { transform: "translateY(0px)" },
+              "50%": { transform: "translateY(-10px)" },
+            },
+            shimmer: {
+              "0%": { backgroundPosition: "-200% 0" },
+              "100%": { backgroundPosition: "200% 0" },
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    body {
+      background-color: #0b0f14;
+      background-image:
+        radial-gradient(circle at 50% 0%, rgba(245, 200, 39, 0.05) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      color: #f0f4f8;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0b0f14; }
+    ::-webkit-scrollbar-thumb { background: #232d3b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3a4a5e; }
+    ::selection { background: #f5c827; color: #0b0f14; }
+
+    .text-shimmer {
+      background: linear-gradient(90deg, #f0f4f8 0%, #f5c827 45%, #5cd6c0 55%, #f0f4f8 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 6s linear infinite;
+    }
+
+    .ambient-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      pointer-events: none;
+      opacity: 0.18;
+    }
+
+    .tilt-card {
+      transition: transform 0.15s ease-out;
+      transform-style: preserve-3d;
+    }
+  </style>
+</head>
+<body class="font-sans antialiased relative min-h-screen pb-32">
+
+  <!-- Scroll Progress Bar -->
+  <div id="scrollProgress" class="fixed inset-x-0 top-0 z-50 h-[3px] origin-left bg-gradient-to-r from-amber via-teal to-blue shadow-[0_0_12px_rgba(245,200,39,0.5)] scale-x-0 transition-transform duration-75"></div>
+
+  <!-- Ambient Glowing Orbs -->
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+    <div class="ambient-orb -top-40 -right-40 h-[500px] w-[500px] bg-amber/20 animate-float"></div>
+    <div class="ambient-orb top-1/3 -left-40 h-[450px] w-[450px] bg-teal/15 animate-float-slow"></div>
+    <div class="ambient-orb -bottom-40 right-1/4 h-[550px] w-[550px] bg-blue/15 animate-float"></div>
+    <!-- Mouse Spotlight -->
+    <div id="cursorSpotlight" class="absolute h-[550px] w-[550px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-40 blur-[120px] transition-opacity duration-300" style="background: radial-gradient(circle, rgba(245, 200, 39, 0.12) 0%, rgba(20, 184, 166, 0.08) 40%, transparent 70%); left: -999px; top: -999px;"></div>
+  </div>
+
+  <!-- Top Navbar -->
+  <header class="sticky top-0 z-40 border-b border-line/70 bg-canvas/80 backdrop-blur-md">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-3.5 sm:px-8">
+      <a href="#overview" class="group flex items-center gap-3">
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg border border-amber/30 bg-panel2 font-mono text-xs font-bold text-amber shadow-sm transition-all group-hover:scale-105 group-hover:border-amber group-hover:shadow-[0_0_12px_rgba(245,200,39,0.3)]">
+          BK
+        </div>
+        <div>
+          <div className="flex items-center gap-2">
+            <span class="text-sm font-semibold text-ink group-hover:text-amber transition-colors">B Kasinath</span>
+            <span class="hidden font-mono text-[11px] text-mute sm:inline">/ Data Analyst</span>
+          </div>
+        </div>
+      </a>
+
+      <div class="hidden items-center gap-2 rounded-full border border-teal/30 bg-teal/10 px-3 py-1 font-mono text-[11px] text-teal md:flex">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal opacity-75"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-teal"></span>
+        </span>
+        Open to Opportunities
+      </div>
+
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="relative">
+          <button id="copyEmailBtn" onclick="copyEmail()" class="flex items-center gap-1.5 rounded-lg border border-line bg-panel px-3 py-1.5 font-mono text-xs text-ink transition-colors hover:border-amber hover:text-amber">
+            <svg class="h-3.5 w-3.5 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+            <span id="copyBtnText">Copy Email</span>
+          </button>
+          <div id="copyToast" class="hidden absolute right-0 top-full mt-2 whitespace-nowrap rounded-md border border-teal/40 bg-panel px-2.5 py-1 font-mono text-[10px] text-teal shadow-lg">
+            kasinaththirupuram@gmail.com copied!
+          </div>
+        </div>
+
+        <a href="https://www.linkedin.com/in/kasinaththirupuram" target="_blank" rel="noopener noreferrer" class="flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-panel text-mute transition-colors hover:border-blue hover:text-blue" aria-label="LinkedIn Profile">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.66 1.66 0 0 0-1.66 1.66c0 .92.74 1.66 1.66 1.66.92 0 1.66-.74 1.66-1.66 0-.92-.74-1.66-1.66-1.66Z"/></svg>
+        </a>
+
+        <a href="https://github.com/kasitpm" target="_blank" rel="noopener noreferrer" class="flex h-8 w-8 items-center justify-center rounded-lg border border-line bg-panel text-mute transition-colors hover:border-ink hover:text-ink" aria-label="GitHub Profile">
+          <svg class="h-4 w-4 fill-current" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.1-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="mx-auto max-w-5xl px-6 pb-16 pt-16 sm:px-8 sm:pt-24">
+    <!-- Availability badge -->
+    <div class="mb-6 inline-flex items-center gap-2.5 rounded-full border border-teal/30 bg-teal/10 px-3.5 py-1.5 font-mono text-xs text-teal shadow-[0_0_16px_rgba(20,184,166,0.15)]">
+      <span class="relative flex h-2 w-2">
+        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-teal opacity-75"></span>
+        <span class="relative inline-flex h-2 w-2 rounded-full bg-teal"></span>
+      </span>
+      <span>Open to Pan-India Data Analyst Roles</span>
+    </div>
+
+    <h1 class="max-w-3xl text-4xl font-extrabold tracking-tight text-ink sm:text-6xl lg:text-7xl">
+      Hi, I'm <span class="text-shimmer">B Kasinath</span>
+    </h1>
+
+    <div class="mt-4 flex items-center gap-3">
+      <span class="font-mono text-base font-semibold text-amber sm:text-xl">Data Analyst</span>
+      <span class="h-1 w-1 rounded-full bg-line"></span>
+      <span class="font-mono text-xs text-mute sm:text-sm">BCA Analytics · Kristu Jayanti</span>
+    </div>
+
+    <p class="mt-6 max-w-2xl text-base leading-relaxed text-mute sm:text-lg">
+      Transforming raw transactional & operational data into interactive dashboards that empower executive decisions — specializing in <strong class="text-ink font-semibold">Power BI</strong>, <strong class="text-ink font-semibold">Power Query & DAX</strong>, <strong class="text-ink font-semibold">SQL</strong>, and <strong class="text-ink font-semibold">Python</strong>.
+    </p>
+
+    <!-- CTAs -->
+    <div class="mt-8 flex flex-wrap items-center gap-3">
+      <a href="#projects" class="group relative overflow-hidden rounded-xl bg-gradient-to-r from-amber to-amber/90 px-6 py-3 text-sm font-bold text-canvas shadow-[0_0_20px_rgba(245,200,39,0.3)] transition-all hover:shadow-[0_0_30px_rgba(245,200,39,0.5)]">
+        <span class="flex items-center gap-2">
+          View Projects
+          <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </span>
+      </a>
+      <a href="mailto:kasinaththirupuram@gmail.com" class="rounded-xl border border-line bg-panel px-5 py-3 text-sm font-semibold text-ink transition-colors hover:border-amber hover:text-amber">
+        Contact Me
+      </a>
+      <a href="https://www.linkedin.com/in/kasinaththirupuram" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-line bg-panel px-5 py-3 text-sm font-semibold text-ink transition-colors hover:border-blue hover:text-blue">
+        LinkedIn ↗
+      </a>
+    </div>
+
+    <!-- Live Interactive Analytics Sandbox Widget -->
+    <div class="mt-14 relative overflow-hidden rounded-2xl border border-line bg-panel/90 p-5 shadow-2xl backdrop-blur-md sm:p-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-line/60 pb-4">
+        <div class="flex items-center gap-2.5">
+          <span class="flex h-3 w-3 items-center justify-center rounded-full bg-amber/20">
+            <span class="h-1.5 w-1.5 rounded-full bg-amber animate-ping"></span>
+          </span>
+          <span class="font-mono text-xs font-semibold uppercase tracking-wider text-amber">
+            Interactive BI Sandbox
+          </span>
+        </div>
+        <div class="flex items-center gap-1.5 rounded-lg border border-line bg-panel2 px-2.5 py-1 font-mono text-[11px] text-mute">
+          <span>Engine:</span>
+          <span id="sandboxEngine" class="text-ink font-medium">Power BI · DAX</span>
+        </div>
+      </div>
+
+      <!-- Sandbox Tabs -->
+      <div class="mt-4 flex gap-2 overflow-x-auto pb-1">
+        <button onclick="switchSandbox('marketing')" id="tab-marketing" class="sandbox-tab flex items-center gap-2 rounded-lg border border-amber/40 bg-amber/15 px-3 py-1.5 font-mono text-xs text-ink font-medium transition-all">
+          <span>📊</span> Marketing Intelligence
+        </button>
+        <button onclick="switchSandbox('datathon')" id="tab-datathon" class="sandbox-tab flex items-center gap-2 rounded-lg border border-transparent px-3 py-1.5 font-mono text-xs text-mute hover:text-ink hover:bg-panel2 transition-all">
+          <span>📈</span> Datathon Model
+        </button>
+        <button onclick="switchSandbox('pipeline')" id="tab-pipeline" class="sandbox-tab flex items-center gap-2 rounded-lg border border-transparent px-3 py-1.5 font-mono text-xs text-mute hover:text-ink hover:bg-panel2 transition-all">
+          <span>⚡</span> Rental DB System
+        </button>
+      </div>
+
+      <!-- Sandbox Content -->
+      <div id="sandboxBody" class="mt-5">
+        <!-- KPIs -->
+        <div id="sandboxKpis" class="grid grid-cols-3 gap-2 sm:gap-3">
+          <div class="rounded-xl border border-line/60 bg-panel2/80 p-3">
+            <div class="font-mono text-[10.5px] uppercase text-mute">Campaign ROI</div>
+            <div class="mt-1 font-mono text-xl font-bold text-ink sm:text-2xl">4.8x</div>
+            <div class="mt-0.5 font-mono text-[10px] text-teal">+38% YoY</div>
+          </div>
+          <div class="rounded-xl border border-line/60 bg-panel2/80 p-3">
+            <div class="font-mono text-[10.5px] uppercase text-mute">Lead Conversion</div>
+            <div class="mt-1 font-mono text-xl font-bold text-ink sm:text-2xl">14.2%</div>
+            <div class="mt-0.5 font-mono text-[10px] text-teal">+3.6% QoQ</div>
+          </div>
+          <div class="rounded-xl border border-line/60 bg-panel2/80 p-3">
+            <div class="font-mono text-[10.5px] uppercase text-mute">Auto Refresh</div>
+            <div class="mt-1 font-mono text-xl font-bold text-ink sm:text-2xl">Daily</div>
+            <div class="mt-0.5 font-mono text-[10px] text-teal">100% Uptime</div>
+          </div>
+        </div>
+
+        <!-- Interactive Chart -->
+        <div class="mt-5 rounded-xl border border-line/40 bg-panel3/30 p-4">
+          <div class="flex items-center justify-between text-xs text-mute mb-2">
+            <span id="sandboxChartTitle" class="font-mono text-[11px] text-ink/90">Global Marketing Campaign Performance</span>
+            <span id="sandboxTooltip" class="font-mono text-[10.5px] text-amber">Hover bars to inspect leads</span>
+          </div>
+
+          <div id="sandboxChartArea" class="flex h-36 items-end justify-between gap-2 px-2 pt-2">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 KPI Cards with 3D Tilt -->
+    <dl class="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line shadow-xl sm:grid-cols-4">
+      <div class="tilt-card group relative overflow-hidden bg-panel/95 p-5 hover:bg-panel2 transition-all">
+        <dt class="font-mono text-[11px] uppercase tracking-wider text-mute group-hover:text-amber">Internship</dt>
+        <dd class="counter mt-3 font-mono text-3xl font-bold text-ink sm:text-4xl" data-target="1">1</dd>
+        <dd class="mt-2 text-xs text-mute">Data Analyst, Experion Technologies</dd>
+      </div>
+      <div class="tilt-card group relative overflow-hidden bg-panel/95 p-5 hover:bg-panel2 transition-all">
+        <dt class="font-mono text-[11px] uppercase tracking-wider text-mute group-hover:text-amber">Certifications</dt>
+        <dd class="counter mt-3 font-mono text-3xl font-bold text-ink sm:text-4xl" data-target="7">7</dd>
+        <dd class="mt-2 text-xs text-mute">Qlik, MongoDB, UiPath, Salesforce +</dd>
+      </div>
+      <div class="tilt-card group relative overflow-hidden bg-panel/95 p-5 hover:bg-panel2 transition-all">
+        <dt class="font-mono text-[11px] uppercase tracking-wider text-mute group-hover:text-amber">Papers Presented</dt>
+        <dd class="counter mt-3 font-mono text-3xl font-bold text-ink sm:text-4xl" data-target="2">2</dd>
+        <dd class="mt-2 text-xs text-mute">ICCI 2026 · Vidyarthi Vichar</dd>
+      </div>
+      <div class="tilt-card group relative overflow-hidden bg-panel/95 p-5 hover:bg-panel2 transition-all">
+        <dt class="font-mono text-[11px] uppercase tracking-wider text-mute group-hover:text-amber">Datathon Result</dt>
+        <dd class="mt-3 font-mono text-3xl font-bold text-ink sm:text-4xl">2nd RU</dd>
+        <dd class="mt-2 text-xs text-mute">Qlik Inter-Institutional Datathon 2026</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- Section 1: Overview -->
+  <section id="overview" class="mx-auto max-w-5xl scroll-mt-24 px-6 py-20 sm:px-8">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="flex items-center gap-1.5 rounded-md border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-amber">
+        <span>01</span><span class="text-amber/50">/</span><span>05</span>
+      </span>
+      <div class="h-px flex-1 bg-gradient-to-r from-line via-line/60 to-transparent"></div>
+    </div>
+    <h2 class="mb-10 text-2xl font-bold tracking-tight text-ink sm:text-3xl">Profile Overview</h2>
+
+    <div class="rounded-2xl border border-line bg-panel/80 p-6 shadow-card backdrop-blur-sm sm:p-8">
+      <p class="text-base leading-relaxed text-ink/90 sm:text-lg">
+        Detail-oriented BCA (Analytics) graduate with a solid foundation in data analytics and business intelligence. Skilled in Power BI, Power Query, DAX and Excel, with practical exposure through an internship, academic projects, and certifications in Qlik Sense, MongoDB, UiPath and Python. Adept at transforming raw data into clear, actionable insights and building dashboards that support business decisions.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-8 sm:grid-cols-2">
+      <!-- Education -->
+      <div class="rounded-2xl border border-line bg-panel/60 p-6 shadow-card">
+        <h3 class="mb-5 flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-amber">
+          <span>🎓</span> Education & Academics
+        </h3>
+        <ul class="space-y-5">
+          <li class="border-b border-line/40 pb-4">
+            <div class="flex items-baseline justify-between gap-2">
+              <p class="text-sm font-bold text-ink">BCA Analytics</p>
+              <span class="rounded-md border border-line bg-panel2 px-2 py-0.5 font-mono text-[10.5px] text-mute">2024 – 2027</span>
+            </div>
+            <p class="mt-1 text-xs text-mute">Kristu Jayanti (Deemed to be University), Bengaluru</p>
+            <span class="mt-2 inline-block rounded-full border border-teal/30 bg-teal/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-teal">Pursuing, First Class with Distinction</span>
+          </li>
+          <li class="border-b border-line/40 pb-4">
+            <div class="flex items-baseline justify-between gap-2">
+              <p class="text-sm font-bold text-ink">Higher Secondary (Science)</p>
+              <span class="rounded-md border border-line bg-panel2 px-2 py-0.5 font-mono text-[10.5px] text-mute">2022 – 2024</span>
+            </div>
+            <p class="mt-1 text-xs text-mute">MVHSS Arumanoor, Trivandrum, Kerala</p>
+            <span class="mt-2 inline-block rounded-full border border-line bg-panel2 px-2.5 py-0.5 font-mono text-[11px] text-mute">Completed</span>
+          </li>
+          <li>
+            <div class="flex items-baseline justify-between gap-2">
+              <p class="text-sm font-bold text-ink">SSLC</p>
+              <span class="rounded-md border border-line bg-panel2 px-2 py-0.5 font-mono text-[10.5px] text-mute">2021 – 2022</span>
+            </div>
+            <p class="mt-1 text-xs text-mute">DR GR Public School</p>
+            <span class="mt-2 inline-block rounded-full border border-line bg-panel2 px-2.5 py-0.5 font-mono text-[11px] text-mute">Completed</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Involvement & Languages -->
+      <div class="space-y-6">
+        <div class="rounded-2xl border border-line bg-panel/60 p-6 shadow-card">
+          <h3 class="mb-4 flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-amber">
+            <span>🤝</span> Leadership & Involvement
+          </h3>
+          <ul class="space-y-2.5 text-xs text-mute">
+            <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>NSS Volunteer — Higher Secondary School (2022–2024)</li>
+            <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>NSS Volunteer — Kristu Jayanti Higher Secondary (2024–2026)</li>
+            <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>LCA Representative</li>
+            <li class="flex items-start gap-2.5"><span class="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>Student Coordinator — Datathon 2025</li>
+          </ul>
+        </div>
+
+        <div class="rounded-2xl border border-line bg-panel/60 p-6 shadow-card">
+          <h3 class="mb-4 flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-amber">
+            <span>🌐</span> Languages Spoken
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <span class="rounded-xl border border-line bg-panel2 px-3 py-1.5 font-mono text-xs text-ink/90">Malayalam <span class="text-mute">· Native</span></span>
+            <span class="rounded-xl border border-line bg-panel2 px-3 py-1.5 font-mono text-xs text-ink/90">English <span class="text-mute">· Fluent</span></span>
+            <span class="rounded-xl border border-line bg-panel2 px-3 py-1.5 font-mono text-xs text-ink/90">Hindi <span class="text-mute">· Fluent</span></span>
+            <span class="rounded-xl border border-line bg-panel2 px-3 py-1.5 font-mono text-xs text-ink/90">Tamil <span class="text-mute">· Conversational</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Experience -->
+  <section id="experience" class="mx-auto max-w-5xl scroll-mt-24 px-6 py-20 sm:px-8">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="flex items-center gap-1.5 rounded-md border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-amber">
+        <span>02</span><span class="text-amber/50">/</span><span>05</span>
+      </span>
+      <div class="h-px flex-1 bg-gradient-to-r from-line via-line/60 to-transparent"></div>
+    </div>
+    <h2 class="mb-10 text-2xl font-bold tracking-tight text-ink sm:text-3xl">Work Experience & Impact</h2>
+
+    <div class="space-y-12">
+      <div class="relative pl-6 sm:pl-8 border-l-2 border-line hover:border-amber/50 transition-colors">
+        <div class="absolute -left-[9px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-canvas">
+          <span class="h-2.5 w-2.5 rounded-full bg-amber shadow-[0_0_10px_rgba(245,200,39,0.8)]"></span>
+        </div>
+
+        <div class="rounded-2xl border border-line bg-panel/90 p-6 shadow-card transition-all hover:border-amber/40 hover:bg-panel2">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-line/50 pb-4">
+            <div>
+              <h3 class="text-xl font-bold text-ink">Data Analyst Intern</h3>
+              <p class="mt-1 text-sm font-medium text-mute">Experion Technologies (India) Pvt. Ltd. — Global Marketing Team</p>
+            </div>
+            <span class="rounded-full border border-amber/30 bg-amber/10 px-3 py-1 font-mono text-xs font-semibold text-amber">Jun 2026 – Jul 2026</span>
+          </div>
+
+          <div class="mt-4 flex flex-wrap gap-2">
+            <span class="rounded-md border border-line bg-panel3/70 px-2.5 py-1 font-mono text-[11px] text-ink">⚡ Power BI & DAX</span>
+            <span class="rounded-md border border-line bg-panel3/70 px-2.5 py-1 font-mono text-[11px] text-teal">🔄 Auto-Refresh Pipelines</span>
+            <span class="rounded-md border border-line bg-panel3/70 px-2.5 py-1 font-mono text-[11px] text-blue">📊 Stakeholder Walkthroughs</span>
+          </div>
+
+          <ul class="mt-5 space-y-2.5 text-sm text-mute">
+            <li class="flex items-start gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>Built an interactive Marketing Intelligence Dashboard in Power BI.</li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>Cleaned and transformed raw marketing datasets using Power Query and DAX.</li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>Designed interactive reports that translated complex marketing data into clear insights for stakeholders.</li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>Set up auto-refresh pipelines so dashboards reflected the latest data without manual intervention.</li>
+            <li class="flex items-start gap-3"><span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber"></span>Presented dashboard insights and functionality to the Global Marketing Team through stakeholder walkthroughs.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="mb-6 flex items-center gap-2">
+          <span class="text-lg">🏆</span>
+          <h3 class="font-mono text-xs uppercase tracking-wider text-mute">Honors & Research Papers</h3>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-3">
+          <div class="tilt-card rounded-2xl border border-amber/40 bg-gradient-to-b from-panel2 to-panel p-5 shadow-card hover:border-amber">
+            <div class="flex items-center justify-between text-xs font-mono text-mute">
+              <span>🥈 2nd Runner-Up</span>
+              <span class="text-amber">2026</span>
+            </div>
+            <h4 class="mt-3 text-sm font-bold text-ink">2nd Runner-Up — Inter-Institutional Datathon 2026</h4>
+            <p class="mt-2 text-xs text-mute">Organized by Dept. of Computational Studies, Kristu Jayanti University with Qlik (13 Aug 2026).</p>
+          </div>
+
+          <div class="tilt-card rounded-2xl border border-line bg-panel p-5 shadow-card hover:border-lineHover">
+            <div class="flex items-center justify-between text-xs font-mono text-mute">
+              <span>📄 Paper Presentation</span>
+              <span class="text-amber">2026</span>
+            </div>
+            <h4 class="mt-3 text-sm font-bold text-ink">Paper — Adaptive Vehicle Lighting with Dual-LDR</h4>
+            <p class="mt-2 text-xs text-mute">Presented at the International Conference (ICCI 2026), Kristu Jayanti University.</p>
+          </div>
+
+          <div class="tilt-card rounded-2xl border border-line bg-panel p-5 shadow-card hover:border-lineHover">
+            <div class="flex items-center justify-between text-xs font-mono text-mute">
+              <span>📄 Paper Presentation</span>
+              <span class="text-amber">2026</span>
+            </div>
+            <h4 class="mt-3 text-sm font-bold text-ink">Paper — Exploring India's Indigenous GNSS (NavIC)</h4>
+            <p class="mt-2 text-xs text-mute">"Evolution, Challenges, and Future Potential of NavIC" — presented at Vidyarthi Vichar, Feb 2026.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Projects -->
+  <section id="projects" class="mx-auto max-w-5xl scroll-mt-24 px-6 py-20 sm:px-8">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="flex items-center gap-1.5 rounded-md border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-amber">
+        <span>03</span><span class="text-amber/50">/</span><span>05</span>
+      </span>
+      <div class="h-px flex-1 bg-gradient-to-r from-line via-line/60 to-transparent"></div>
+    </div>
+    <h2 class="mb-6 text-2xl font-bold tracking-tight text-ink sm:text-3xl">Featured Projects & Analytics</h2>
+
+    <!-- Category Filter Tabs -->
+    <div class="mb-8 flex flex-wrap items-center gap-2">
+      <button onclick="filterProjects('all')" class="proj-tab active rounded-xl border border-amber/40 bg-amber/15 px-4 py-2 font-mono text-xs text-ink font-semibold transition-all">All Projects</button>
+      <button onclick="filterProjects('bi')" class="proj-tab rounded-xl border border-line bg-panel px-4 py-2 font-mono text-xs text-mute hover:text-ink hover:bg-panel2 transition-all">Power BI & Dashboards</button>
+      <button onclick="filterProjects('sql')" class="proj-tab rounded-xl border border-line bg-panel px-4 py-2 font-mono text-xs text-mute hover:text-ink hover:bg-panel2 transition-all">Systems & SQL</button>
+      <button onclick="filterProjects('research')" class="proj-tab rounded-xl border border-line bg-panel px-4 py-2 font-mono text-xs text-mute hover:text-ink hover:bg-panel2 transition-all">Research & GNSS</button>
+    </div>
+
+    <!-- Grid -->
+    <div id="projectsGrid" class="grid gap-6 sm:grid-cols-2">
+      <!-- Project 1 -->
+      <div class="project-card tilt-card flex flex-col justify-between rounded-2xl border border-line bg-panel/90 p-6 shadow-card hover:border-amber/50 hover:bg-panel2 transition-all" data-tags="bi">
+        <div>
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-base font-bold text-ink hover:text-amber transition-colors">Marketing Intelligence Dashboard</h3>
+              <p class="mt-1 font-mono text-[11px] text-mute">Experion Technologies · 2026</p>
+            </div>
+            <!-- Mini Bar Chart -->
+            <svg viewBox="0 0 120 40" class="h-10 w-24">
+              <rect x="4" y="26" width="12" height="14" rx="3" fill="#3B82F6" opacity="0.6"></rect>
+              <rect x="23" y="18" width="12" height="22" rx="3" fill="#3B82F6" opacity="0.7"></rect>
+              <rect x="42" y="22" width="12" height="18" rx="3" fill="#3B82F6" opacity="0.7"></rect>
+              <rect x="61" y="10" width="12" height="30" rx="3" fill="#3B82F6" opacity="0.8"></rect>
+              <rect x="80" y="16" width="12" height="24" rx="3" fill="#3B82F6" opacity="0.85"></rect>
+              <rect x="99" y="4" width="12" height="36" rx="3" fill="#F5C827" opacity="1"></rect>
+            </svg>
+          </div>
+          <p class="mb-6 text-[13.5px] leading-relaxed text-mute">
+            Multi-page Power BI dashboard for a Global Marketing Team, with Power Query/DAX transformations and scheduled auto-refresh so stakeholders always see live data.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-2 border-t border-line/60 pt-4">
+          <div class="flex flex-wrap gap-1.5">
+            <span class="rounded-md border border-line bg-panel3 px-2 py-0.5 font-mono text-[11px]">Power BI</span>
+            <span class="rounded-md border border-line bg-panel3 px-2 py-0.5 font-mono text-[11px]">Power Query</span>
+            <span class="rounded-md border border-line bg-panel3 px-2 py-0.5 font-mono text-[11px]">DAX</span>
+          </div>
+          <span class="rounded-full border border-teal/30 bg-teal/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-teal">Multi-page</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card tilt-card flex flex-col justify-between rounded-2xl border border-line bg-panel/90 p-6 shadow-card hover:border-amber/50 hover:bg-panel2 transition-all" data-tags="sql">
+        <div>
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <h3 class="text-base font-bold text-ink">Hawkins Wheels — Vehicle Rental</h3>
+                <a href="https://github.com/kasitpm" target="_blank" class="text-xs text-mute hover:text-amber">↗</a>
+              </div>
+              <p class="mt-1 font-mono text-[11px] text-mute">Academic Project</p>
+            </div>
+            <!-- Mini Donut Chart -->
+            <div class="relative flex h-10 w-10 items-center justify-center">
+              <svg viewBox="0 0 40 40" class="h-full w-full -rotate-90">
+                <circle cx="20" cy="20" r="15" fill="none" stroke="#232D3B" stroke-width="5"></circle>
+                <circle cx="20" cy="20" r="15" fill="none" stroke="#F5C827" stroke-width="5" stroke-dasharray="94.2" stroke-dashoffset="24" stroke-linecap="round"></circle>
+              </svg>
+              <span class="absolute font-mono text-[9px] font-bold">75%</span>
+            </div>
+          </div>
+          <p class="mb-6 text-[13.5px] leading-relaxed text-mute">
+            End-to-end rental management system with booking, inventory and billing workflows, built on VB.NET with a SQL Server backend.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-2 border-t border-line/60 pt-4">
+          <div class="flex flex-wrap gap-1.5">
+            <span class="rounded-md border border-line bg-panel3 px-2 py-0.5 font-mono text-[11px]">VB.NET</span>
+            <span class="rounded-md border border-line bg-panel3 px-2 py-0.5 font-mono text-[11px]">SQL Server</span>
+          </div>
+          <span class="rounded-full border border-teal/30 bg-teal/10 px-2.5 py-0.5 font-mono text-[11px] font-medium text-teal">Full CRUD</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card tilt-card flex flex-col justify-between rounded-2xl border border-line bg-panel/90 p-6 shadow-card hover:border-amber/50 hover:bg-panel2 transition-all" data-tags="research">
+        <div>
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-base font-bold text-ink">Adaptive Vehicle Lighting System</h3>
+              <p class="mt-1 font-mono text-[11px] text-mute">Conference Paper · ICCI 2026</p>
+            </div>
+            <!-- Mini Line Chart -->
+            <svg viewBox="0 0 120 40" class="h-10 w-24">
+              <polyline points="4,32 24,24 44,28 64,15 84,20 100,8 116,12" fill="none" stroke="#14B8A6" stroke-width="2.5" stroke-linecap="round"></polyline>
+              <circle cx="116" cy="12" r="3.5" fill="#F5C827"></circle>
+            </svg>
+          </div>
+          <p class="mb-6 text-[13.5px] leading-relaxed text-mute">
+            Research on a dual-LDR embedded system for adaptive vehicle lighting, presented at the International Conference in collaboration with global partners.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-2 border-t border-line/60 pt-4">
+          <div class="flex flex-wrap gap-1.5">
+            <span class="rounded-md border border-line bg-panel3 px-2 py-0.5 font-mono text-[11px]">Embedded Systems</span>
+            <span class="rounded-md border border-line bg-panel3 px-2 py-0.5 font-mono text-[11px]">Research</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card tilt-card flex flex-col justify-between rounded-2xl border border-line bg-panel/90 p-6 shadow-card hover:border-amber/50 hover:bg-panel2 transition-all" data-tags="research">
+        <div>
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <h3 class="text-base font-bold text-ink">Exploring India's Indigenous GNSS (NavIC)</h3>
+              <p class="mt-1 font-mono text-[11px] text-mute">Paper · Vidyarthi Vichar, Feb 2026</p>
+            </div>
+            <!-- Mini Line Chart -->
+            <svg viewBox="0 0 120 40" class="h-10 w-24">
+              <polyline points="4,28 24,20 44,24 64,12 84,18 100,6 116,10" fill="none" stroke="#5CD6C0" stroke-width="2.5" stroke-linecap="round"></polyline>
+              <circle cx="116" cy="10" r="3.5" fill="#F5C827"></circle>
+            </svg>
+          </div>
+          <p class="mb-6 text-[13.5px] leading-relaxed text-mute">
+            A study on NavIC's evolution, current challenges and future potential as India's indigenous satellite navigation system.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-2 border-t border-line/60 pt-4">
+          <div class="flex flex-wrap gap-1.5">
+            <span class="rounded-md border border-line bg-panel3 px-2 py-0.5 font-mono text-[11px]">Research</span>
+            <span class="rounded-md border border-line bg-panel3 px-2 py-0.5 font-mono text-[11px]">GNSS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Skills -->
+  <section id="skills" class="mx-auto max-w-5xl scroll-mt-24 px-6 py-20 sm:px-8">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="flex items-center gap-1.5 rounded-md border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-amber">
+        <span>04</span><span class="text-amber/50">/</span><span>05</span>
+      </span>
+      <div class="h-px flex-1 bg-gradient-to-r from-line via-line/60 to-transparent"></div>
+    </div>
+    <h2 class="mb-10 text-2xl font-bold tracking-tight text-ink sm:text-3xl">Technical Stack & Credentials</h2>
+
+    <div class="space-y-12">
+      <!-- Search -->
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <div class="relative w-full max-w-sm">
+          <input
+            type="text"
+            id="skillSearch"
+            oninput="searchSkills()"
+            placeholder="Search skill (e.g. Power BI, SQL, Python)..."
+            class="w-full rounded-xl border border-line bg-panel px-4 py-2.5 pl-10 font-mono text-xs text-ink placeholder-mute transition-colors focus:border-amber focus:outline-none focus:ring-1 focus:ring-amber"
+          />
+          <svg class="absolute left-3.5 top-3 h-4 w-4 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+        <div class="font-mono text-xs text-mute">14+ Verified Competencies</div>
+      </div>
+
+      <!-- Groups -->
+      <div class="grid gap-6 sm:grid-cols-3">
+        <div class="rounded-2xl border border-line bg-panel/80 p-5 shadow-card backdrop-blur-sm">
+          <div class="mb-4 flex items-center justify-between border-b border-line/60 pb-3">
+            <h3 class="font-mono text-xs font-bold uppercase tracking-wider text-amber">BI & Data</h3>
+            <span class="font-mono text-[11px] text-mute">5 tools</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">Power BI</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">Power Query</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">DAX</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">Qlik Sense</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">MS Excel</span>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-line bg-panel/80 p-5 shadow-card backdrop-blur-sm">
+          <div class="mb-4 flex items-center justify-between border-b border-line/60 pb-3">
+            <h3 class="font-mono text-xs font-bold uppercase tracking-wider text-amber">Languages & DB</h3>
+            <span class="font-mono text-[11px] text-mute">6 tools</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">Python</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">SQL</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">MongoDB</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">MS SQL Server</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">Java</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">C</span>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-line bg-panel/80 p-5 shadow-card backdrop-blur-sm">
+          <div class="mb-4 flex items-center justify-between border-b border-line/60 pb-3">
+            <h3 class="font-mono text-xs font-bold uppercase tracking-wider text-amber">Automation & Web</h3>
+            <span class="font-mono text-[11px] text-mute">3 tools</span>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">UiPath</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">VB.NET</span>
+            <span class="skill-badge rounded-lg border border-line bg-panel2 px-3 py-1.5 font-mono text-xs">HTML</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div>
+        <div class="mb-6 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">📜</span>
+            <h3 class="font-mono text-xs uppercase tracking-wider text-mute">Industry Certifications & Badges (7)</h3>
+          </div>
+          <span class="font-mono text-[11px] text-teal">Verified Credentials</span>
+        </div>
+
+        <div class="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+          <div class="tilt-card rounded-xl border border-line bg-panel p-4.5 shadow-card hover:border-emerald hover:bg-panel2">
+            <div class="flex items-center justify-between">
+              <span class="rounded-md border border-emerald/40 bg-emerald/10 px-2 py-0.5 font-mono text-[10px] text-emerald font-semibold">Qlik</span>
+              <span class="font-mono text-[10.5px] text-mute">Sep 2025</span>
+            </div>
+            <h4 class="mt-3 text-sm font-semibold text-ink">Qlik Sense Business Analyst</h4>
+            <div class="mt-3 pt-2 border-t border-line/40 text-[11px] font-mono text-mute">Issuer: Qlik</div>
+          </div>
+
+          <div class="tilt-card rounded-xl border border-line bg-panel p-4.5 shadow-card hover:border-emerald hover:bg-panel2">
+            <div class="flex items-center justify-between">
+              <span class="rounded-md border border-emerald/40 bg-emerald/10 px-2 py-0.5 font-mono text-[10px] text-emerald font-semibold">MongoDB</span>
+              <span class="font-mono text-[10.5px] text-mute">Sep 2025</span>
+            </div>
+            <h4 class="mt-3 text-sm font-semibold text-ink">MongoDB Database Admin Path</h4>
+            <div class="mt-3 pt-2 border-t border-line/40 text-[11px] font-mono text-mute">Issuer: MongoDB</div>
+          </div>
+
+          <div class="tilt-card rounded-xl border border-line bg-panel p-4.5 shadow-card hover:border-amber hover:bg-panel2">
+            <div class="flex items-center justify-between">
+              <span class="rounded-md border border-amber/40 bg-amber/10 px-2 py-0.5 font-mono text-[10px] text-amber font-semibold">UiPath</span>
+              <span class="font-mono text-[10.5px] text-mute">Dec 2025</span>
+            </div>
+            <h4 class="mt-3 text-sm font-semibold text-ink">Automation Developer Associate</h4>
+            <div class="mt-3 pt-2 border-t border-line/40 text-[11px] font-mono text-mute">Issuer: UiPath Academic Cohort</div>
+          </div>
+
+          <div class="tilt-card rounded-xl border border-line bg-panel p-4.5 shadow-card hover:border-blue hover:bg-panel2">
+            <div class="flex items-center justify-between">
+              <span class="rounded-md border border-blue/40 bg-blue/10 px-2 py-0.5 font-mono text-[10px] text-blue font-semibold">Salesforce</span>
+              <span class="font-mono text-[10.5px] text-mute">2026</span>
+            </div>
+            <h4 class="mt-3 text-sm font-semibold text-ink">Agentblazer Innovator '26</h4>
+            <div class="mt-3 pt-2 border-t border-line/40 text-[11px] font-mono text-mute">Issuer: Trailhead (2 Superbadges)</div>
+          </div>
+
+          <div class="tilt-card rounded-xl border border-line bg-panel p-4.5 shadow-card hover:border-blue hover:bg-panel2">
+            <div class="flex items-center justify-between">
+              <span class="rounded-md border border-blue/40 bg-blue/10 px-2 py-0.5 font-mono text-[10px] text-blue font-semibold">NPTEL</span>
+              <span class="font-mono text-[10.5px] text-mute">Oct 2025</span>
+            </div>
+            <h4 class="mt-3 text-sm font-semibold text-ink">Programming in Java</h4>
+            <div class="mt-3 pt-2 border-t border-line/40 text-[11px] font-mono text-mute">Issuer: NPTEL</div>
+          </div>
+
+          <div class="tilt-card rounded-xl border border-line bg-panel p-4.5 shadow-card hover:border-amber hover:bg-panel2">
+            <div class="flex items-center justify-between">
+              <span class="rounded-md border border-amber/40 bg-amber/10 px-2 py-0.5 font-mono text-[10px] text-amber font-semibold">ITC Infotech</span>
+              <span class="font-mono text-[10.5px] text-mute">Jan 2026</span>
+            </div>
+            <h4 class="mt-3 text-sm font-semibold text-ink">Python Web Developer</h4>
+            <div class="mt-3 pt-2 border-t border-line/40 text-[11px] font-mono text-mute">Issuer: ASPIRE with ICT Academy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Contact -->
+  <section id="contact" class="mx-auto max-w-5xl scroll-mt-24 px-6 py-20 sm:px-8">
+    <div class="mb-4 flex items-center gap-3">
+      <span class="flex items-center gap-1.5 rounded-md border border-amber/30 bg-amber/10 px-2 py-0.5 font-mono text-[11px] font-semibold text-amber">
+        <span>05</span><span class="text-amber/50">/</span><span>05</span>
+      </span>
+      <div class="h-px flex-1 bg-gradient-to-r from-line via-line/60 to-transparent"></div>
+    </div>
+    <h2 class="mb-10 text-2xl font-bold tracking-tight text-ink sm:text-3xl">Get In Touch</h2>
+
+    <div class="grid gap-6 sm:grid-cols-2">
+      <!-- Email Card -->
+      <div class="tilt-card flex flex-col justify-between rounded-2xl border border-line bg-panel p-7 shadow-card hover:border-amber/60 hover:bg-panel2 transition-all">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="rounded-full border border-amber/30 bg-amber/10 px-3 py-1 font-mono text-[11px] font-semibold text-amber">Direct Inquiries</span>
+            <span class="font-mono text-xs text-mute">⚡ ~24h reply</span>
+          </div>
+          <p class="mt-6 font-mono text-xl font-bold text-ink break-all">kasinaththirupuram@gmail.com</p>
+          <p class="mt-2 text-sm leading-relaxed text-mute">
+            Looking for a Data Analyst to build production dashboards, clean pipelines, or extract business intelligence? Let's talk.
+          </p>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center gap-3 pt-4 border-t border-line/50">
+          <button onclick="copyEmail()" class="flex items-center gap-2 rounded-xl bg-amber px-4 py-2 font-mono text-xs font-bold text-canvas transition-opacity hover:opacity-90 shadow-[0_0_12px_rgba(245,200,39,0.25)]">
+            <span>Copy Address</span>
+          </button>
+          <a href="mailto:kasinaththirupuram@gmail.com" class="rounded-xl border border-line bg-panel2 px-4 py-2 font-mono text-xs font-semibold text-ink hover:border-ink transition-colors">
+            Open Mail Client ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- LinkedIn Card -->
+      <div class="tilt-card flex flex-col justify-between rounded-2xl border border-line bg-panel p-7 shadow-card hover:border-blue/60 hover:bg-panel2 transition-all">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="rounded-full border border-blue/30 bg-blue/10 px-3 py-1 font-mono text-[11px] font-semibold text-blue">Professional Network</span>
+            <span class="font-mono text-xs text-teal">Open to Connect</span>
+          </div>
+          <p class="mt-6 text-xl font-bold text-ink">/in/kasinaththirupuram</p>
+          <p class="mt-2 text-sm leading-relaxed text-mute">
+            Connect for full-time Data Analyst opportunities, referrals, or discussions on Power BI, data engineering, and predictive models.
+          </p>
+        </div>
+        <div class="mt-8 flex flex-wrap items-center gap-3 pt-4 border-t border-line/50">
+          <a href="https://www.linkedin.com/in/kasinaththirupuram" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 rounded-xl bg-blue px-4 py-2 font-mono text-xs font-bold text-white hover:opacity-90 transition-opacity shadow-[0_0_12px_rgba(59,130,246,0.3)]">
+            <span>LinkedIn Profile ↗</span>
+          </a>
+          <a href="https://github.com/kasitpm" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 rounded-xl border border-line bg-panel2 px-4 py-2 font-mono text-xs font-semibold text-ink hover:border-ink transition-colors">
+            <span>GitHub ↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating Dock (Bottom Tabs) -->
+  <nav class="fixed inset-x-0 bottom-5 z-40 flex justify-center px-4">
+    <div class="flex items-center gap-1 rounded-2xl border border-line/80 bg-panel/90 p-1.5 shadow-[0_12px_40px_rgba(0,0,0,0.7)] backdrop-blur-xl">
+      <a href="#overview" class="dock-link flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-medium text-mute hover:text-ink sm:px-4 sm:text-[13px]">
+        <span>👤</span><span class="hidden xs:inline">Overview</span>
+      </a>
+      <a href="#experience" class="dock-link flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-medium text-mute hover:text-ink sm:px-4 sm:text-[13px]">
+        <span>💼</span><span class="hidden xs:inline">Experience</span>
+      </a>
+      <a href="#projects" class="dock-link flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-medium text-mute hover:text-ink sm:px-4 sm:text-[13px]">
+        <span>📊</span><span class="hidden xs:inline">Projects</span>
+      </a>
+      <a href="#skills" class="dock-link flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-medium text-mute hover:text-ink sm:px-4 sm:text-[13px]">
+        <span>⚡</span><span class="hidden xs:inline">Skills</span>
+      </a>
+      <a href="#contact" class="dock-link flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-medium text-mute hover:text-ink sm:px-4 sm:text-[13px]">
+        <span>✉️</span><span class="hidden xs:inline">Contact</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Footer -->
+  <footer class="mx-auto mt-20 max-w-5xl px-6 pb-28 pt-8 text-center sm:px-8 border-t border-line/60">
+    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+      <p class="font-mono text-xs text-mute">
+        Designed & Engineered for <span class="text-ink font-semibold">B Kasinath</span> · Data Analyst
+      </p>
+      <div class="flex items-center gap-3 font-mono text-[11px] text-mute">
+        <span class="rounded-md border border-line bg-panel px-2 py-0.5">Next.js 14</span>
+        <span class="rounded-md border border-line bg-panel px-2 py-0.5">Tailwind CSS</span>
+        <span class="rounded-md border border-line bg-panel px-2 py-0.5">Framer Motion</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Interactive JavaScript Engine -->
+  <script>
+    // 1. Scroll Progress
+    window.addEventListener("scroll", () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height);
+      document.getElementById("scrollProgress").style.transform = `scaleX(${scrolled})`;
+    });
+
+    // 2. Mouse Spotlight
+    const spotlight = document.getElementById("cursorSpotlight");
+    window.addEventListener("mousemove", (e) => {
+      spotlight.style.left = `${e.clientX}px`;
+      spotlight.style.top = `${e.clientY + window.scrollY}px`;
+    });
+
+    // 3. 3D Tilt Cards
+    document.querySelectorAll(".tilt-card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        card.style.transform = `perspective(800px) rotateX(${-y * 0.05}deg) rotateY(${x * 0.05}deg)`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg)";
+      });
+    });
+
+    // 4. Interactive Sandbox Engine
+    const sandboxData = {
+      marketing: {
+        engine: "Power BI · DAX",
+        title: "Global Marketing Campaign Performance",
+        tooltipHint: "Hover bars to inspect leads",
+        kpis: [
+          { label: "Campaign ROI", val: "4.8x", delta: "+38% YoY" },
+          { label: "Lead Conversion", val: "14.2%", delta: "+3.6% QoQ" },
+          { label: "Auto Refresh", val: "Daily", delta: "100% Uptime" }
+        ],
+        type: "bar",
+        points: [
+          { label: "Jan", val: 38, info: "3.8k Leads" },
+          { label: "Feb", val: 52, info: "5.2k Leads" },
+          { label: "Mar", val: 45, info: "4.5k Leads" },
+          { label: "Apr", val: 72, info: "7.2k Leads" },
+          { label: "May", val: 64, info: "6.4k Leads" },
+          { label: "Jun", val: 89, info: "8.9k Leads" }
+        ]
+      },
+      datathon: {
+        engine: "Qlik · Python",
+        title: "Datathon Predictive Model Accuracy",
+        tooltipHint: "Hover points to inspect F1-Score",
+        kpis: [
+          { label: "Precision", val: "98.4%", delta: "Top 2%" },
+          { label: "AUC / ROC", val: "0.96", delta: "High Fit" },
+          { label: "Placement", val: "2nd RU", delta: "Podium" }
+        ],
+        type: "line",
+        points: [
+          { label: "v1.0", val: 65, info: "Baseline 65%" },
+          { label: "v1.2", val: 74, info: "Feature Eng 74%" },
+          { label: "v1.5", val: 83, info: "Cross-Val 83%" },
+          { label: "v2.0", val: 92, info: "Hyper-tune 92%" },
+          { label: "Final", val: 98, info: "Optimal 98.4%" }
+        ]
+      },
+      pipeline: {
+        engine: "SQL Server · VB",
+        title: "Hawkins Wheels Rental Throughput",
+        tooltipHint: "Hover segments for distribution",
+        kpis: [
+          { label: "Query P99", val: "12ms", delta: "-45% Latency" },
+          { label: "Transactions", val: "100%", delta: "ACID Compliant" },
+          { label: "Tables", val: "12 Rel", delta: "3NF Schema" }
+        ],
+        type: "donut",
+        points: [
+          { label: "Bookings", val: 42, info: "42% Volume" },
+          { label: "Billing", val: 28, info: "28% Volume" },
+          { label: "Fleet", val: 18, info: "18% Volume" },
+          { label: "Reports", val: 12, info: "12% Volume" }
+        ]
+      }
+    };
+
+    function renderChart(data) {
+      const area = document.getElementById("sandboxChartArea");
+      const tooltip = document.getElementById("sandboxTooltip");
+      tooltip.innerText = data.tooltipHint;
+
+      if (data.type === "bar") {
+        area.innerHTML = data.points.map((p) => `
+          <div class="group flex flex-1 cursor-pointer flex-col items-center justify-end h-full"
+               onmouseenter="document.getElementById('sandboxTooltip').innerText = '${p.label}: ${p.info}'"
+               onmouseleave="document.getElementById('sandboxTooltip').innerText = '${data.tooltipHint}'">
+            <div class="relative w-full flex justify-center items-end h-[90px]">
+              <div class="w-full max-w-[32px] rounded-t-md bg-gradient-to-t from-blue/70 to-teal/90 transition-all duration-300 group-hover:bg-amber group-hover:shadow-[0_0_12px_rgba(245,200,39,0.5)]"
+                   style="height: ${p.val}%;"></div>
+            </div>
+            <span class="mt-2 font-mono text-[10px] text-mute group-hover:text-ink">${p.label}</span>
+          </div>
+        `).join("");
+      } else if (data.type === "line") {
+        area.innerHTML = `
+          <svg viewBox="0 0 400 120" class="h-full w-full overflow-visible">
+            <defs>
+              <linearGradient id="glowLine" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#5CD6C0" stop-opacity="0.4"/>
+                <stop offset="100%" stop-color="#5CD6C0" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M 20,95 L 100,75 L 180,55 L 280,30 L 370,12 L 370,115 L 20,115 Z" fill="url(#glowLine)" />
+            <path d="M 20,95 L 100,75 L 180,55 L 280,30 L 370,12" fill="none" stroke="#5CD6C0" stroke-width="3" stroke-linecap="round" />
+            <circle cx="20" cy="95" r="5" class="fill-amber cursor-pointer" onmouseenter="document.getElementById('sandboxTooltip').innerText='v1.0: Baseline 65%'" onmouseleave="document.getElementById('sandboxTooltip').innerText='${data.tooltipHint}'" />
+            <circle cx="100" cy="75" r="5" class="fill-amber cursor-pointer" onmouseenter="document.getElementById('sandboxTooltip').innerText='v1.2: Feature Eng 74%'" onmouseleave="document.getElementById('sandboxTooltip').innerText='${data.tooltipHint}'" />
+            <circle cx="180" cy="55" r="5" class="fill-amber cursor-pointer" onmouseenter="document.getElementById('sandboxTooltip').innerText='v1.5: Cross-Val 83%'" onmouseleave="document.getElementById('sandboxTooltip').innerText='${data.tooltipHint}'" />
+            <circle cx="280" cy="30" r="5" class="fill-amber cursor-pointer" onmouseenter="document.getElementById('sandboxTooltip').innerText='v2.0: Hyper-tune 92%'" onmouseleave="document.getElementById('sandboxTooltip').innerText='${data.tooltipHint}'" />
+            <circle cx="370" cy="12" r="6" class="fill-amber cursor-pointer animate-pulse" onmouseenter="document.getElementById('sandboxTooltip').innerText='Final: Optimal 98.4%'" onmouseleave="document.getElementById('sandboxTooltip').innerText='${data.tooltipHint}'" />
+          </svg>
+        `;
+      } else {
+        area.innerHTML = `
+          <div class="flex h-full w-full items-center justify-around gap-4 px-4">
+            <div class="relative flex h-24 w-24 items-center justify-center">
+              <svg viewBox="0 0 100 100" class="h-full w-full -rotate-90">
+                <circle cx="50" cy="50" r="38" class="stroke-panel2" stroke-width="12" fill="none" />
+                <circle cx="50" cy="50" r="38" stroke="#F5C827" stroke-width="12" stroke-dasharray="238" stroke-dashoffset="138" stroke-linecap="round" fill="none" />
+                <circle cx="50" cy="50" r="38" stroke="#3B82F6" stroke-width="12" stroke-dasharray="238" stroke-dashoffset="180" stroke-linecap="round" fill="none" class="rotate-[150deg] origin-center" />
+              </svg>
+              <div class="absolute text-center">
+                <div class="font-mono text-xs font-bold text-ink">3NF</div>
+                <div class="font-mono text-[9px] text-mute">Schema</div>
+              </div>
+            </div>
+            <div class="flex flex-col gap-1.5 font-mono text-xs">
+              <div class="flex items-center gap-2 cursor-pointer hover:text-amber" onmouseenter="document.getElementById('sandboxTooltip').innerText='Bookings: 42% Volume'" onmouseleave="document.getElementById('sandboxTooltip').innerText='${data.tooltipHint}'">
+                <span class="h-2 w-2 rounded-full bg-amber"></span>
+                <span class="text-mute">Bookings:</span> <span class="font-semibold text-ink">42%</span>
+              </div>
+              <div class="flex items-center gap-2 cursor-pointer hover:text-blue" onmouseenter="document.getElementById('sandboxTooltip').innerText='Billing: 28% Volume'" onmouseleave="document.getElementById('sandboxTooltip').innerText='${data.tooltipHint}'">
+                <span class="h-2 w-2 rounded-full bg-blue"></span>
+                <span class="text-mute">Billing:</span> <span class="font-semibold text-ink">28%</span>
+              </div>
+              <div class="flex items-center gap-2 cursor-pointer hover:text-teal" onmouseenter="document.getElementById('sandboxTooltip').innerText='Fleet: 18% Volume'" onmouseleave="document.getElementById('sandboxTooltip').innerText='${data.tooltipHint}'">
+                <span class="h-2 w-2 rounded-full bg-teal"></span>
+                <span class="text-mute">Fleet:</span> <span class="font-semibold text-ink">18%</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function switchSandbox(key) {
+      const data = sandboxData[key];
+      document.getElementById("sandboxEngine").innerText = data.engine;
+      document.getElementById("sandboxChartTitle").innerText = data.title;
+
+      document.querySelectorAll(".sandbox-tab").forEach((btn) => {
+        btn.classList.remove("border-amber/40", "bg-amber/15", "text-ink", "font-medium");
+        btn.classList.add("border-transparent", "text-mute");
+      });
+      const activeBtn = document.getElementById("tab-" + key);
+      activeBtn.classList.remove("border-transparent", "text-mute");
+      activeBtn.classList.add("border-amber/40", "bg-amber/15", "text-ink", "font-medium");
+
+      document.getElementById("sandboxKpis").innerHTML = data.kpis.map(k => `
+        <div class="rounded-xl border border-line/60 bg-panel2/80 p-3">
+          <div class="font-mono text-[10.5px] uppercase text-mute">${k.label}</div>
+          <div class="mt-1 font-mono text-xl font-bold text-ink sm:text-2xl">${k.val}</div>
+          <div class="mt-0.5 font-mono text-[10px] text-teal">${k.delta}</div>
+        </div>
+      `).join("");
+
+      renderChart(data);
+    }
+    // Initialize default chart
+    renderChart(sandboxData.marketing);
+
+    // 5. Project Filtering
+    function filterProjects(tag) {
+      document.querySelectorAll(".proj-tab").forEach(btn => {
+        btn.classList.remove("border-amber/40", "bg-amber/15", "text-ink", "font-semibold");
+        btn.classList.add("border-line", "bg-panel", "text-mute");
+      });
+      event.target.classList.remove("border-line", "bg-panel", "text-mute");
+      event.target.classList.add("border-amber/40", "bg-amber/15", "text-ink", "font-semibold");
+
+      document.querySelectorAll(".project-card").forEach(card => {
+        const cardTags = card.getAttribute("data-tags");
+        if (tag === "all" || cardTags.includes(tag)) {
+          card.style.display = "flex";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    // 6. Skill Search
+    function searchSkills() {
+      const q = document.getElementById("skillSearch").value.toLowerCase();
+      document.querySelectorAll(".skill-badge").forEach(badge => {
+        const text = badge.innerText.toLowerCase();
+        if (q && text.includes(q)) {
+          badge.classList.add("border-amber", "bg-amber/20", "text-amber", "font-bold");
+        } else {
+          badge.classList.remove("border-amber", "bg-amber/20", "text-amber", "font-bold");
+        }
+      });
+    }
+
+    // 7. Copy Email
+    function copyEmail() {
+      navigator.clipboard.writeText("kasinaththirupuram@gmail.com").then(() => {
+        const toast = document.getElementById("copyToast");
+        toast.classList.remove("hidden");
+        document.getElementById("copyBtnText").innerText = "Copied! ✓";
+        setTimeout(() => {
+          toast.classList.add("hidden");
+          document.getElementById("copyBtnText").innerText = "Copy Email";
+        }, 2500);
+      });
+    }
+
+    // 8. Dock Active Highlight on Scroll
+    const sections = ["overview", "experience", "projects", "skills", "contact"].map(id => document.getElementById(id));
+    window.addEventListener("scroll", () => {
+      let current = "overview";
+      sections.forEach(sec => {
+        if (!sec) return;
+        const top = sec.getBoundingClientRect().top;
+        if (top <= window.innerHeight * 0.45) {
+          current = sec.id;
+        }
+      });
+      document.querySelectorAll(".dock-link").forEach(link => {
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("bg-panel2", "border", "border-line", "text-ink", "font-semibold");
+          link.classList.remove("text-mute");
+        } else {
+          link.classList.remove("bg-panel2", "border", "border-line", "text-ink", "font-semibold");
+          link.classList.add("text-mute");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
