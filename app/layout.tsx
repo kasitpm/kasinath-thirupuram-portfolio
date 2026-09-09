@@ -30,6 +30,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: personName }],
   alternates: { canonical: SITE_URL },
+  verification: {
+    google: "ipawJD6akpRY_8U-QmMALtURpl68894dmoXQhmfa_NQ",
+  },
   openGraph: {
     title: `${personName} — Data Analyst Portfolio`,
     description: profile.tagline,
