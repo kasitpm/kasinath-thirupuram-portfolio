@@ -3,7 +3,6 @@
 import { motion, type Variants } from "framer-motion";
 import { profile, kpis } from "@/data/profile";
 import KpiCard from "./KpiCard";
-import InteractiveAnalyticsWidget from "./InteractiveAnalyticsWidget";
 
 const container: Variants = {
   hidden: {},
@@ -111,11 +110,6 @@ export default function Hero() {
         >
           LinkedIn ↗
         </motion.a>
-      </motion.div>
-
-      {/* Interactive Analytics Sandbox Showcase */}
-      <motion.div variants={item} className="mt-14">
-        <InteractiveAnalyticsWidget />
       </motion.div>
 
       {/* KPI Stats Bar with 3D Tilt */}

@@ -87,7 +87,7 @@ export default function ContactCard() {
           </div>
 
           <p className="mt-6 text-xl font-bold text-ink group-hover:text-blue transition-colors">
-            /in/kasinaththirupuram
+            {profile.name}
           </p>
           <p className="mt-2 text-sm leading-relaxed text-mute">
             Connect for full-time Data Analyst opportunities, referrals, or discussions on Power BI, data engineering, and predictive models.

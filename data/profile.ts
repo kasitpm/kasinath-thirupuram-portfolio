@@ -29,7 +29,7 @@ export const education = [
     qualification: "BCA Analytics",
     institution: "Kristu Jayanti (Deemed to be University), Bengaluru",
     period: "2024 – 2027",
-    status: "Pursuing, First Class with Distinction",
+    status: "Pursuing",
   },
   {
     qualification: "Higher Secondary (Science)",
