@@ -21,7 +21,6 @@ export const kpis = [
   { label: "Internship", value: "1", note: "Data Analyst, Experion Technologies" },
   { label: "Certifications", value: "7", note: "Qlik, MongoDB, UiPath, Salesforce +" },
   { label: "Papers Presented", value: "2", note: "ICCI 2026 · Vidyarthi Vichar" },
-  { label: "Datathon Result", value: "2nd RU", note: "Qlik Inter-Institutional Datathon 2026" },
 ];
 
 export const education = [

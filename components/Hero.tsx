@@ -115,7 +115,7 @@ export default function Hero() {
       {/* KPI Stats Bar with 3D Tilt */}
       <motion.dl
         variants={item}
-        className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line shadow-xl sm:grid-cols-4"
+        className="mt-8 grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-line bg-line shadow-xl sm:grid-cols-3"
       >
         {kpis.map((kpi, i) => (
           <KpiCard
