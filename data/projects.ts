@@ -21,6 +21,17 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: "kerala-flood-watch",
+    title: "Kerala Flood Watch — Live Rainfall & Flood-Risk Dashboard",
+    period: "Personal Project · 2026",
+    description:
+      "Self-updating Power BI dashboard tracking rainfall and flood risk across all 14 Kerala districts. A GitHub Actions pipeline pulls live weather data, official NDMA alerts and river discharge every 3 hours; each river is flagged against its own 30-day 90th-percentile threshold rather than a fixed number, which is what surfaces smaller rivers running unusually high that a raw-number view would miss.",
+    stack: ["Power BI", "DAX", "Power Query", "Python", "GitHub Actions"],
+    metric: "Live pipeline",
+    chart: "line",
+    link: "https://github.com/kasitpm/kerala-flood-watch",
+  },
+  {
     id: "marketing-intelligence-dashboard",
     title: "Marketing Intelligence Dashboard",
     period: "Experion Technologies · 2026",
