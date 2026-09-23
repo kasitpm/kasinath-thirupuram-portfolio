@@ -62,7 +62,7 @@ export const experience = [
 export const skillGroups = [
   { group: "BI & Data", skills: ["Power BI", "Power Query", "DAX", "Qlik Sense", "MS Excel"] },
   { group: "Languages & DB", skills: ["Python", "Java", "C", "SQL", "MongoDB", "MS SQL Server"] },
-  { group: "Automation & Web", skills: ["UiPath", "VB.NET", "HTML"] },
+  { group: "Automation & Web", skills: ["UiPath", "VB.NET", "HTML", "GitHub Actions"] },
 ];
 
 export const certifications = [
